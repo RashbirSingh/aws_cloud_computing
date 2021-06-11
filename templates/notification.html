@@ -1,0 +1,19 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block login %}
+<li><a href={{ userlog }}><span class="glyphicon glyphicon-{{ userlogimage }}"></span> {{ userlogtext }}</a></li>
+{% endblock %}
+{% block body %}
+
+  <div class="container" style="width:81%; margin-top: 5%; background: #CDCDCD; padding:5%">
+    <hr>
+    <hr>
+    <p style="font-size: -webkit-xxx-large; text-align: center;">
+        {{ notification }}
+    </p>
+    <hr>
+    <hr>
+
+  </div>
+
+{% endblock %}

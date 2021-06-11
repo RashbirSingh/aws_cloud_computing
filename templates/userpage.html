@@ -1,0 +1,47 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block body %}
+
+<div class="container" style="width:81%; margin-top: 5%; background: #CDCDCD; padding:5%">
+    <h1 style="text-align: center; margin-bottom:10%">USER PAGE</h1>
+    <form action="changepass" method="post">
+
+        <div class="container" style="width:100%;">
+            <label for="oldpass"><b>OLD PASSWORD</b></label>
+            <input type="text" placeholder="OLD PASSWORD" class="form-control" name="oldpass" required>
+            <br>
+            <label for="newpass"><b>NEW PASSWORD</b></label>
+            <input type="password" placeholder="NEW PASSWORD" class="form-control" name="newpass" required>
+            <br>
+            <button type="submit" class="btn btn-primary" style="width:100%">Change</button>
+
+        </div>
+
+    </form>
+</div>
+
+<div class="container" style="margin-top: 5%; background: #CDCDCD; padding:5%">
+    <div class="row">
+        <div class="col-sm">
+            <h1>Message Display Area</h1>
+
+            {% for eachPost in postquerylist %}
+            <b> Subject: </b> {{ eachPost.subject }} <br>
+            <b> Message Text: </b>  {{ eachPost.msg }} <br>
+            <b> Image: </b> <img src="https://storage.googleapis.com/s3810585-storage-task1/{{ eachPost.img }}" width="360" height="240"> <br>
+            <b> Date and Time: </b> {{ eachPost.datetime }} <br>
+            <b> User Name: </b> {{ eachPost.user_names }} <br>
+            <b> User Image: </b> <img src="https://storage.googleapis.com/s3810585-storage-task1/{{ eachPost.userImage }}" width="80" height="80">
+            <br><br>
+            <form action="editpost" method="post">
+                <input name="postid" type="hidden" value="{{ eachPost.id }}">
+                <button type="submit" class="btn btn-primary" style="width:100%">Edit</button>
+            </form>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

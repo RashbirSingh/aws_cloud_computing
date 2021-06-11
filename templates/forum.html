@@ -1,0 +1,81 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block login %}
+<li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+{% endblock %}
+{% block body %}
+<h1 style="color: #CDCDCD;
+    padding-left: 9.5%;
+    padding-bottom: 3%;">FORUM PAGE</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-6"
+             style="background: #CDCDCD;
+             flex: 1;
+             height: -webkit-fill-available;
+             background: lightgrey;
+             border: 3px solid grey;
+             text-align: center;">
+            <h1 style="font-size: -webkit-xxx-large+30px">User Area</h1><br>
+            <p style="font-size: -webkit-xxx-large;"> {{ user_name }} </p> <br>
+        </div>
+        <div class="col col-lg-6"
+             style="background: #CDCDCD;
+             flex: 1;
+             height: -webkit-fill-available;
+             background: lightgrey;
+             border: 3px solid grey;">
+            <h1 style="font-size: -webkit-xxx-large+30px; text-align: center;">Subscription Area</h1><br>
+            <hr>
+            {% for music in musicdict %}
+            <form action="deletedata" method="POST"
+                  enctype="multipart/form-data">
+                <p> {{music.title}} </p>
+                <p> {{music.artist}} </p>
+                <p> {{music.year}} </p>
+                <img src="static/froms3/{{music.img_url.split('/')[-1]}}">
+                <input type="hidden" value="{{music.count}}" name="countmusic">
+                <button type="submit" class="btn btn-primary" style="width:100%" value="Remove">Remove</button>
+            </form>
+            <hr>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+<div class="container"
+     style="margin-top: 5%;
+     background: #CDCDCD;
+     padding:5%;
+     flex: 1;
+     background: lightgrey;
+     border: 3px solid grey;">
+    <div class="row">
+        <div class="col-sm">
+            <h1>Query Area</h1>
+            <div class="container" style="width:80%; padding-top: 5%;">
+                <form action="queryprocess" method="POST"
+                      enctype="multipart/form-data">
+
+                    <label for="title"><b>Title</b></label>
+                    <input type="text" placeholder="Title" class="form-control" name="title">
+
+                    <label for="year"><b>Year</b></label>
+                    <input type="text" placeholder="year" class="form-control" name="year">
+
+                    <label for="artist"><b>Artist</b></label>
+                    <input type="text" placeholder="artist" class="form-control" name="artist">
+
+                    <br> <br>
+                    <input type="submit" value="Query" class="btn btn-primary" style="width:100%">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

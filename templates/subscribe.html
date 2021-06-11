@@ -1,0 +1,31 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block body %}
+
+
+<div class="container" style="width:40%; margin-top: 5%; background: #CDCDCD; padding:5%">
+    <div class="row">
+        <div class="col-sm">
+            <h1 style="text-align: center; margin-bottom:15%">Subscribe Here</h1>
+            <hr>
+
+            {% for artist in resultlist %}
+            <form action="subscribeartist" method="POST"
+                  enctype="multipart/form-data">
+                <p>{{artist.title}}</p>
+                <input type="hidden" name="title" value="{{artist.title}}">
+                <p>{{artist.year}}</p>
+                <p>{{artist.artist}}</p>
+                <img src="static/froms3/{{artist.img_url.split('/')[-1]}}">
+                <input type="submit" value="Subscribe" class="btn btn-primary" style="width:100%">
+                <hr>
+            </form>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
